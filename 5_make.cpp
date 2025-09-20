@@ -1,4 +1,6 @@
 /*
+https://github.com/Laramie-County-Community-College/cosc-1030-loops-assignment-Mecklz.git
+
 Complete the following programs; when finished take a screen capture of the output from your running program and package it with your .cpp file. Submit a zipped folder with your work.
 
 1.  Apartment Building
@@ -29,7 +31,6 @@ The program should use a do-while loop that repeats until the user guesses the n
 
 The program should also employ a while loop that keeps track of the number of guesses made by the user and, once the user guesses the number correctly, displays the number of guesses the user made.
 
- 
 */
 #include <iostream>
 #include <vector>
@@ -55,12 +56,13 @@ int main(){
         }
 
         // This ended up being my first condition (0 > occupants > 6). I hope it works.
+        // lol it didn't.
         while (true) {
            std::cout << "Please enter the number of occupants on floor " << floor << ": ";
-            std::cin >> occupants; 
+            std::cin >> occupants;
            if (occupants < 7 and occupants > -1){
             break;
-           }
+           };
            else{
             std::cout << "\nThere are only 6 rooms per floor.\n";
            }
@@ -74,7 +76,7 @@ int main(){
     std::cout << std::fixed << std::setprecision(1);
     std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) << "\% occupancy. ";
     std::cout << "\n\n Please press enter to terminate.";
-    std::cin >> occupants;
+    // std::cin >> occupants;
 
     return 0;
 }
