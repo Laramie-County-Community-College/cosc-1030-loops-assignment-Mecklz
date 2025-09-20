@@ -31,3 +31,51 @@ The program should also employ a while loop that keeps track of the number of gu
 
  
 */
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+int main(){
+
+    // Declare variables
+    int floor = 1;
+    int occupants = -1;
+    int totalOccup = 0;
+    std::vector<int> perFloor;
+
+    // Initiate crazy good POR title
+    std::cout << "SUPER UBER APARTMENT POINT OF RENTAL" << std::endl << std::endl;
+
+    // Loop user input
+    for (floor; floor < 17; floor ++) {
+
+        // Wayside school condition
+        if (floor == 13){
+            floor ++;
+        }
+
+        // This ended up being my first condition (0 > occupants > 6). I hope it works.
+        while (true) {
+           std::cout << "Please enter the number of occupants on floor " << floor << ": ";
+            std::cin >> occupants; 
+           if (occupants < 7 and occupants > -1){
+            break;
+           }
+           else{
+            std::cout << "\nThere are only 6 rooms per floor.\n";
+           }
+        }
+        // Loading a vector with the occupied amounts with indexes representing each floor
+        perFloor.push_back(occupants);
+        totalOccup += occupants;
+// Display the total number of rooms, the number of occupied rooms, the number of unoccupied rooms, and the percentage of occupied rooms, all with appropriate labels and spacing.
+    }
+    std::cout << "There are 90 rooms in this building of which " << totalOccup << " rooms are occupied." << std::endl;
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) << "\% occupancy. ";
+    std::cout << "\n\n Please press enter to terminate.";
+    std::cin >> occupants;
+
+    return 0;
+}
+    
