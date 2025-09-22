@@ -20,27 +20,32 @@ the user and, once the user guesses the number correctly, displays the number of
 #include <cstdlib>
 #include <ctime>
 
+char token;
+
 int main(){
-    char token = 'g';
+    
     std::srand(std::time(0));
     while (token != 'x') {
         std::cout << "Let's guess a number, eh?\n";
         int number = (rand()%100)+1;
         int guess = 0;
         while(true) {
-            // I tested so many ways of doing this and discovered that, unlike python, cin <int>
-            // will only buffer <int> and will omit everything else and/or turn it to 0. I left in
-            // one of my tries for the message cause I'm stoked it worked.
+            // I tested so many ways of doing this and finally discovered that, unlike python, cin <int>
+            // will only buffer <int> and will set a failed state (thanks ai) if not <int> is entered 
+            // and will not re-attempt until its reset. Still feels like cheating. I'll grow up someday.
             while (true) {
                 guess = 0;
-                std::cout << "Please pick a number from 1-100: ";
-                std::cin >> guess;
-                if (!static_cast<bool>(guess)) {
+                std::cout << "\nPlease pick a number from 1-100: ";
+                std::cin >> guess;  // Fills input buffer with the guess and a damned \n
+
+                // check to see cin failbit set to 1
+                if (std::cin.fail()) {
                     std::cout << "\nYour entry contained invalid characters. Try again.\n";
-                    std::cin.ignore(1000,'\n');
+                    std::cin.clear(); // Sets failbit to 0
+                    std::cin.ignore(1000,'\n'); // Clears the buffer
                 } else {break;}
             }
-            
+            // Number check
             if (guess == number){
                 break;
             } else if (guess < number) {
@@ -48,21 +53,21 @@ int main(){
             } else if (guess > number) {
                 std::cout << "\nToo high. Try again.\n";
             } else {
-                std::cout << "\nSomething went wrong. Try again.\n";
+                std::cout << "\nSomething went wrong. Try again.\n"; // This was a debug trap that never sprung
             }
-            std::cout << "\nGuess: " << guess << "\nNumber: " << number << "\nToken: " << token;
-            std::cin.get();
+            std::cin.ignore(1000,'\n'); // This is to clear the buffer in case ints were entered separated by illegal chars
+            
+            // Debug lines
+            // std::cout << "\nGuess: " << guess << "\nNumber: " << number << "\nToken: " << token;
         }
-        std::cout << "WAY TO GO! Press any key and enter to play again or 'x' to quit: ";
+        std::cout << "WAY TO GO! Press enter to play again or 'x' and enter to quit: ";
 
         // Heres a thing. cin.get take exactly the first char(even whitespace) and cin.ignore
         // ignores (max chars in buffer, until this delimiter). Since the only input that matters 
-        // here is anm 'x', I won't worry about dealing with possible leading whitespace in the cin
-        std::cin.get(token);
-        std::cin.ignore(1000,'\n');
-        
+        // here is 'x', I won't worry about dealing with possible leading whitespace in the cin
+        std::cin.ignore(1000,'\n'); // ALSO CLEARS THE BUFFER
+        std::cin.get(token);      
     }
     
-
     return 0;
 }
