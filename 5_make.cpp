@@ -15,19 +15,6 @@ NOTE: It is traditional that American buildings do not have a 13th floor!  The l
 
 INPUT VALIDATION: Remember not to accept numbers less than 0 or greater than 6 for the number of occupied rooms per floor.
 
- 
-
-2.  Random Number Guessing Game
-
-Write a program that generates a random number between 1 and 100 and asks the user to guess what the number is.  
-
-If the user's guess is higher than the random number, the program should display "Too high, try again."  
-
-If the user's guess is lower than the random number the program should display "Too low, try again."  
-
-The program should use a do-while loop that repeats until the user guesses the number correctly.  
-
-The program should also employ a while loop that keeps track of the number of guesses made by the user and, once the user guesses the number correctly, displays the number of guesses the user made.
 
  
 */
@@ -68,12 +55,15 @@ int main(){
         // Loading a vector with the occupied amounts with indexes representing each floor
         perFloor.push_back(occupants);
         totalOccup += occupants;
-// Display the total number of rooms, the number of occupied rooms, the number of unoccupied rooms, and the percentage of occupied rooms, all with appropriate labels and spacing.
+    // Display the total number of rooms, the number of occupied rooms, the number of unoccupied 
+    //rooms, and the percentage of occupied rooms, all with appropriate labels and spacing.
     }
-    std::cout << "There are 90 rooms in this building of which " << totalOccup << " rooms are occupied." << std::endl;
+    std::cout << "There are 90 rooms in this building of which " << totalOccup << 
+        " rooms are occupied.\n";
     std::cout << std::fixed << std::setprecision(1);
-    std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) << "\% occupancy. ";
-    std::cout << "\n\n Please press enter to terminate.";
+    std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) <<
+         "\% occupancy. ";
+    std::cout << "\n\n Please press any key and enter to terminate.";
     std::cin >> occupants;
 
     return 0;
