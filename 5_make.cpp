@@ -29,7 +29,9 @@ If the user's guess is lower than the random number the program should display "
 
 The program should use a do-while loop that repeats until the user guesses the number correctly.  
 
-The program should also employ a while loop that keeps track of the number of guesses made by the user and, once the user guesses the number correctly, displays the number of guesses the user made.
+The program should also employ a while loop that keeps track of the number of guesses 
+
+made by the user and, once the user guesses the number correctly, displays the number of guesses the user made.
 
 */
 #include <iostream>
@@ -60,9 +62,9 @@ int main(){
         while (true) {
            std::cout << "Please enter the number of occupants on floor " << floor << ": ";
             std::cin >> occupants;
-           if (occupants < 7 and occupants > -1){
+           if (occupants < 7 && occupants > -1){
             break;
-           };
+           }
            else{
             std::cout << "\nThere are only 6 rooms per floor.\n";
            }
@@ -70,11 +72,12 @@ int main(){
         // Loading a vector with the occupied amounts with indexes representing each floor
         perFloor.push_back(occupants);
         totalOccup += occupants;
-// Display the total number of rooms, the number of occupied rooms, the number of unoccupied rooms, and the percentage of occupied rooms, all with appropriate labels and spacing.
+// Display the total number of rooms, the number of occupied rooms, the number of 
+// unoccupied rooms, and the percentage of occupied rooms, all with appropriate labels and spacing.
     }
     std::cout << "There are 90 rooms in this building of which " << totalOccup << " rooms are occupied." << std::endl;
     std::cout << std::fixed << std::setprecision(1);
-    std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) << "\% occupancy. ";
+    std::cout << "That means your property is at " << ((static_cast<double>(totalOccup)/90)*100) << "% occupancy. ";
     std::cout << "\n\n Please press enter to terminate.";
     // std::cin >> occupants;
 
